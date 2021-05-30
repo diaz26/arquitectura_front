@@ -7,12 +7,20 @@ import axios from 'axios'
 
 require('./store/modules/Suscriber')
 
-axios.defaults.baseURL = "http://localhost:8000/api/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
-}).$mount('#app')
+store.dispatch('login/me', localStorage.getItem('blog_token'))
+  .then(() => {
+    new Vue({
+      router,
+      store,
+      vuetify,
+      render: h => h(App)
+    }).$mount('#app')
+
+  }).catch((e) => {
+    console.log(e)
+    router.push('login')
+  })
+

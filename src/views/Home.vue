@@ -92,3 +92,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-application .primary--text{
+  color: #3f51b5!important;
+  caret-color: #3f51b5!important;
+}
+</style>

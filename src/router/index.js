@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
+import Store from "../store";
 
 Vue.use(VueRouter)
 
@@ -19,7 +20,7 @@ const routes = [
     name: 'home',
     component: () => import('../views/Home.vue'),
     beforeEnter: (to, from, next) => {
-      if(!localStorage.getItem('blog_token')) {
+      if(!Store.getters['login/token']) {
         router.push('login')
       }
       next()
